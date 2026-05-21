@@ -42,8 +42,11 @@ def init_db():
 
 @app.route("/")
 def home():
+    init_db()
+
     conn = get_connection()
     cur = conn.cursor()
+
     cur.execute("INSERT INTO visits DEFAULT VALUES;")
     conn.commit()
 
@@ -65,6 +68,4 @@ def health():
     return jsonify({"status": "ok"})
 
 
-if __name__ == "__main__":
-    init_db()
-    app.run(host="0.0.0.0", port=5000)
+init_db()
