@@ -116,12 +116,5 @@ chmod +x scripts/deploy\_static\_site.sh
 
 
 http://localhost:8081
-
-
-
 Результат работы:
-
-
-
 <img src="./screenshots/nginx-static-site-result.png" alt="Nginx static site result" width="700">
-
