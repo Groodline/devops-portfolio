@@ -4,22 +4,23 @@
 
 Внутри 3 проекта:
 
-1. `01-nginx-static-site-deploy` — деплой статического сайта через Nginx.
-2. `02-docker-compose-web-app` — веб-приложение + PostgreSQL через Docker Compose.
-3. `03-github-actions-auto-deploy` — автодеплой на VPS через GitHub Actions + SSH.
+1. `01-nginx-static-site-deploy` 
+2. `02-docker-compose-web-app` 
+3. `03-github-actions-auto-deploy`
 
 ## Что показывает это портфолио
 
-- базовую работу с Linux и терминалом;
-- настройку Nginx;
-- работу с Docker и Docker Compose;
-- переменные окружения через `.env`;
-- деплой приложения на сервер;
-- базовую настройку CI/CD через GitHub Actions;
-- умение писать документацию и объяснять свои действия.
+* базовую работу с Linux и терминалом;
+* настройку Nginx;
+* работу с Docker и Docker Compose;
+* переменные окружения через `.env`;
+* деплой приложения на сервер;
+* базовую настройку CI/CD через GitHub Actions;
+* умение писать документацию и объяснять свои действия.
 
 ## Автор
 
 Daniyar Sadyrbaev  
 3D Artist / начинающий DevOps  
 ArtStation: https://www.artstation.com/goodline
+

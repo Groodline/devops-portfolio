@@ -1,144 +1,128 @@
-\# 02 — Docker Compose Web App
+02 — Docker Compose Web App
 
-
-
-\## Цель проекта
-
-
+Цель проекта
 
 Запустить веб-приложение, базу данных PostgreSQL и Nginx через Docker Compose.
 
-
-
 Проект показывает навыки:
 
+написание Dockerfile;
 
+сборка Docker image;
 
-\- написание Dockerfile
+запуск нескольких сервисов через Docker Compose;
 
-\- сборка Docker image
+использование `.env`;
 
-\- запуск нескольких сервисов через Docker Compose
+работа с volume для базы данных;
 
-\- использование .env
+reverse proxy через Nginx;
 
-\- работа с volume для базы данных
+проверка логов контейнеров.
 
-\- reverse proxy через Nginx
+Стек
 
-\- проверка логов контейнеров
+Python Flask
 
+PostgreSQL
 
+Docker
 
-\## Стек
+Docker Compose
 
+Nginx
 
+Структура
 
-\- Python Flask
-
-\- PostgreSQL
-
-\- Docker
-
-\- Docker Compose
-
-\- Nginx
-
-
-
-\## Структура проекта
-
-
+```text
 
 02-docker-compose-web-app/
 
+├── app/
 
+│   ├── app.py
 
-\- app/app.py
+│   ├── Dockerfile
 
-\- app/Dockerfile
+│   └── requirements.txt
 
-\- app/requirements.txt
+├── nginx/
 
-\- nginx/default.conf
+│   └── default.conf
 
-\- docker-compose.yml
+├── docker-compose.yml
 
-\- .env.example
+├── .env.example
 
-\- README.md
+└── README.md
 
-\- screenshots/docker-compose-result.png
+```
 
+Запуск локально
 
+Создать `.env`:
 
-\## Запуск локально
-
-
-
-Создать .env файл:
-
-
+```bash
 
 cp .env.example .env
 
-
+```
 
 Запустить контейнеры:
 
-
+```bash
 
 docker compose up -d --build
 
+```
 
+Проверить статус:
 
-Проверить статус контейнеров:
-
-
+```bash
 
 docker compose ps
 
-
+```
 
 Открыть приложение:
 
-
+```text
 
 http://localhost:8080
 
-
+```
 
 Проверить health endpoint:
 
-
+```bash
 
 curl http://localhost:8080/health
 
-
+```
 
 Посмотреть логи:
 
-
+```bash
 
 docker compose logs -f
 
-
+```
 
 Остановить проект:
 
-
+```bash
 
 docker compose down
 
+```
 
+Остановить и удалить volume базы:
 
-Остановить проект и удалить volume базы данных:
-
-
+```bash
 
 docker compose down -v
 
-
+```
 
 \## Проверка работы
 
@@ -182,6 +166,7 @@ http://localhost:8080/health
 
 <img src="./screenshots/docker-compose-result.png" alt="Docker Compose result" width="700">
 
+ф
 
 \## Что я понял в процессе
 
