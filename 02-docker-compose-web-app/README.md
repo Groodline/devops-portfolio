@@ -180,8 +180,7 @@ http://localhost:8080/health
 
 
 
-!\[Docker Compose result](./screenshots/docker-compose-result.png)
-
+<img src="./screenshots/docker-compose-result.png" alt="Docker Compose result" width="700">
 
 
 \## Что я понял в процессе
