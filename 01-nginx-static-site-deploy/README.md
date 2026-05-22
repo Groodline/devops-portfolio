@@ -1,120 +1,86 @@
-# 01 — Nginx Static Site Deploy
+# 01 — Nginx Static Site
 
-## Цель проекта
+## Что это
 
-Задеплоить простой HTML-сайт на Linux/VPS через Nginx.
+Простой статический сайт, запущенный через Nginx.
 
-Этот проект показывает базовые навыки:
-
-* работа через SSH;
-* работа с Linux-директориями;
-* настройка Nginx server block;
-* проверка конфигурации через `nginx -t`;
-* перезапуск сервиса через `systemctl`;
-* просмотр логов Nginx.
+Цель проекта — показать базовое понимание того, как Nginx отдаёт HTML-страницу пользователю, как работает проброс портов в Docker и как проверить работу сервиса через браузер и curl.
 
 ## Стек
 
-* Linux / Debian / Ubuntu
 * Nginx
-* SSH
-* Bash
+* Docker
+* Docker Compose
+* HTML
 
-## Структура
+## Что есть в проекте
+
+* `index.html` — простая HTML-страница
+* `docker-compose.yml` — запуск Nginx-контейнера
+* `nginx/devops-static-site.conf` — пример конфига Nginx для VPS
+* `scripts/deploy\_static\_site.sh` — пример скрипта для ручного деплоя на Linux-сервер
+
+## Локальный запуск
+
+Перейти в папку проекта:
+
+```bash
+cd 01-nginx-static-site-deploy
+```
+
+Запустить Nginx:
+
+```bash
+docker compose up -d
+```
+
+Проверить контейнер:
+
+```bash
+docker compose ps
+```
+
+Открыть сайт в браузере:
 
 ```text
-01-nginx-static-site-deploy/
-├── index.html
-├── nginx/
-│   └── devops-static-site.conf
-└── scripts/
-    └── deploy\_static\_site.sh
+http://localhost:8081
 ```
 
-## Ручной деплой
-
-Подключиться к серверу:
+Проверить через терминал:
 
 ```bash
-ssh user@SERVER\_IP
+curl http://localhost:8081
 ```
 
-Установить Nginx:
+Остановить проект:
 
 ```bash
-sudo apt update
-sudo apt install nginx -y
+docker compose down
 ```
 
-Создать папку сайта:
-
-```bash
-sudo mkdir -p /var/www/devops-static-site
-```
-
-Скопировать `index.html`:
-
-```bash
-sudo cp index.html /var/www/devops-static-site/index.html
-```
-
-Скопировать конфиг Nginx:
-
-```bash
-sudo cp nginx/devops-static-site.conf /etc/nginx/sites-available/devops-static-site
-sudo ln -s /etc/nginx/sites-available/devops-static-site /etc/nginx/sites-enabled/devops-static-site
-```
-
-Проверить конфиг и перезагрузить Nginx:
-
-```bash
-sudo nginx -t
-sudo systemctl reload nginx
-```
-
-Проверить в браузере:
-
-```text
-http://SERVER\_IP
-```
-
-## Автоматический деплой скриптом
-
-```bash
-chmod +x scripts/deploy\_static\_site.sh
-./scripts/deploy\_static\_site.sh
-```
-
-## Что я понял в процессе
-
-* Nginx может раздавать статические файлы.
-* Конфиги сайтов обычно лежат в `/etc/nginx/sites-available`.
-* Активные сайты подключаются через symlink в `/etc/nginx/sites-enabled`.
-* Перед перезапуском Nginx нужно проверять конфиг командой `sudo nginx -t`.
-* Логи помогают искать ошибки в работе сайта.
-
-
-
-\## Проверка работы
-
-
+## Проверка работы
 
 Проект был успешно запущен локально через Nginx в Docker.
 
-
-
 Контейнер:
 
-
-
-\- nginx\_static\_site — Nginx container
-
-
+* `nginx\_static\_site` — Nginx container
 
 Сайт доступен по адресу:
 
-
-
+```text
 http://localhost:8081
+```
+
 Результат работы:
+
 <img src="./screenshots/nginx-static-site-result.png" alt="Nginx static site result" width="700">
+
+## Что я понял в процессе
+
+* Nginx может отдавать статические HTML-файлы.
+* Docker позволяет запустить Nginx без установки его напрямую в систему.
+* В `docker-compose.yml` можно пробросить порт контейнера наружу.
+* `8081:80` означает, что порт 8081 на компьютере ведёт на порт 80 внутри контейнера.
+* `curl` можно использовать для проверки ответа сайта из терминала.
+
